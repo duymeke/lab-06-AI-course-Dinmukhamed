@@ -1,0 +1,52 @@
+{
+  "harness_controls": [
+    "validate_input",
+    "blind",
+    "refuse",
+    "log",
+    "escalate"
+  ],
+  "format_problems": [],
+  "entries": [
+    {
+      "control": "validate_input",
+      "principle": "Robustness, security and safety",
+      "principle_source": "OECD Recommendation of the Council on Artificial Intelligence (OECD/LEGAL/0449, 2019, amended 2024), Principle 1.4 (non-binding recommendation)",
+      "instrument": "Law of the Republic of Kazakhstan 'On Artificial Intelligence' No. 230-VIII of 17 November 2025",
+      "provision": "Art. 11, points 1-3 (AI systems must meet safety and reliability requirements; owners must manage risks and remove threats)",
+      "why_here": "The bare pipeline screened GPA 9.9 and exam score -5 as real data (Part 4), so impossible values must be stopped before the model turns them into a decision."
+    },
+    {
+      "control": "blind",
+      "principle": "Fairness and non-discrimination",
+      "principle_source": "UNESCO Recommendation on the Ethics of Artificial Intelligence (2021), Section III.2, 'Fairness and non-discrimination', paras 28-30 (non-binding recommendation)",
+      "instrument": "Law of the RK 'On Artificial Intelligence' No. 230-VIII of 17.11.2025; Law of the RK 'On Personal Data and their Protection' No. 94-V of 21.05.2013",
+      "provision": "AI Law Art. 6 (exclude discrimination by origin, sex, language, etc.); Personal Data Law Art. 7 para 9 (no processing of data excessive for the purpose)",
+      "why_here": "Part 1 found no decision effect clear of the floors, but 4/40 one-directional flips for gender-coded names and a one-directional +2.5 score shift for flagship universities (sign p = 0.002); name and university are not merit, so the model does not see them."
+    },
+    {
+      "control": "refuse",
+      "principle": "Proportionality and Do No Harm; respect for human rights",
+      "principle_source": "UNESCO Recommendation on the Ethics of AI (2021), Section III.2, paras 25-26; OECD AI Principles (2019/2024), Principle 1.2",
+      "instrument": "Law of the RK 'On Personal Data and their Protection' No. 94-V of 21.05.2013; Law of the RK 'On Artificial Intelligence' No. 230-VIII of 17.11.2025",
+      "provision": "PD Law Art. 7 para 1 and Art. 19-1 para 1 (consent required for automated processing that affects rights); AI Law Art. 17 para 3, sub-paras 3 and 4 (no classification of people by personal traits, no unlawful processing of personal data)",
+      "why_here": "The bare pipeline screened a request to rank by ethnicity, a 17-year-old, an applicant without consent and an injected instruction in the name field (Part 4); the harness refused all five with 0 model calls and refused 0 of 400 clean applicants."
+    },
+    {
+      "control": "log",
+      "principle": "Responsibility and accountability; transparency and explainability",
+      "principle_source": "UNESCO Recommendation on the Ethics of AI (2021), Section III.2, paras 37-43; OECD AI Principles (2019/2024), Principles 1.3 and 1.5",
+      "instrument": "Law of the RK 'On Artificial Intelligence' No. 230-VIII of 17.11.2025; benchmark only (does not bind a Kazakh fund): Regulation (EU) 2024/1689 (AI Act)",
+      "provision": "AI Law Art. 8 paras 1-2 (constant control, liability of all parties) and Art. 7 para 2 (right to know how automated processing works); AI Act Art. 12 (automatic record-keeping) as benchmark",
+      "why_here": "Blinding changed the outcome of 35 of 400 profiles and the score of 166, so each decision must be reconstructable later from the record (fields shown/withheld, input hash, raw reply, reason code) without re-running the model."
+    },
+    {
+      "control": "escalate",
+      "principle": "Human oversight and determination",
+      "principle_source": "UNESCO Recommendation on the Ethics of AI (2021), Section III.2, 'Human oversight and determination', paras 35-36 (non-binding recommendation)",
+      "instrument": "Law of the RK 'On Artificial Intelligence' No. 230-VIII of 17.11.2025; Law of the RK 'On Personal Data and their Protection' No. 94-V of 21.05.2013",
+      "provision": "AI Law Art. 17 para 2 (low autonomy: a human makes the final choice) and Art. 9; PD Law Art. 19-1 paras 2-3 (right to object to an automated decision, reply within 3 working days)",
+      "why_here": "A score of 45 is both the highest reject and the lowest shortlist score (40-49 bin: 33 rejected, 31 shortlisted), so decisions there are unstable; band (45, 50) planned 19.8% but sent 22 of 400 (5.5%) after blinding."
+    }
+  ]
+}
